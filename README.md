@@ -51,3 +51,37 @@ Criar o gerenciamento de categorias do Sistema, onde seja possível Listar, Cria
 
 
 ### Boa Sorte!
+
+# Instruções de instalação (considerando Ubuntu 16.04)
+## Requisitos
+- GIT
+- Docker e Docker-Compose
+- Possuir a porta 8088 liberada no localhost
+
+
+## Etapas para instalação
+- Fazer o clone do repositório em uma pasta de preferência (Ex: /home/meuusuario)
+```shell
+cd /home/meuusuario
+git clone git@github.com:ricardohsti/teste-php.git
+```
+- Acesse a pasta criada e carregue o ambiente utilizando o docker-compose:
+```shell
+cd teste-php
+docker-compose up -d #carrega os containers (ambientes) necessários para executar o projeto, já com o banco de dados
+```
+- Ao subir o docker-compose, o banco de dados já será criado, com o nome `produtos`
+- O acesso a este banco de dados já está pré-configurado no arquivo /laravel/.env
+- Carregue o terminal interno do container php-bash para ter acesso ao comandos laravel
+```shell
+docker-compose exec php-fpm bash
+```
+- Após subir o ambiente e carregar o terminal, acesse a pasta laravel e rode a migration para criar e popular o banco de dados:
+```shell
+cd laravel
+
+# O parametro seed roda o script seeder que pŕe popula o banco com dados de teste
+# Para gerar as tabelas vazia, omita-o
+php artisan migrate --seed 
+```
+- Por fim acesse no navegador o endereço http://localhost:8088
