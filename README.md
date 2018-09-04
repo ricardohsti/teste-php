@@ -80,6 +80,9 @@ docker-compose exec php-fpm bash
 ```shell
 cd laravel
 
+# Executar instalação das dependências do projeto base
+composer install
+
 # O parametro seed roda o script seeder que pŕe popula o banco com dados de teste
 # Para gerar as tabelas vazia, omita-o
 php artisan migrate --seed 
